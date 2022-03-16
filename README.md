@@ -52,6 +52,7 @@ Dabei soll es aber nicht bleiben. Im folgenden schreibe ich mir hier eine Checkl
 im Hinblick darauf, dass irgendwann auch ein:e Arbeitskollege:in ein neues Produkt anlegen könnte, ohne das SKU-System verstehen zu müssen.
 
 skUnifys Nice-To-Haves (sortiert von hoffentlich leicht nach "Ich-hab-keine-Ahnung-wie-das-gehen-soll"):
+- Code teilweise in Funktionen und neue py-Datei auslagern (angefangen)
 - individuelle Produkt-Beschreibung in HTML
 - 7% und 19% Umsatzsteuer
 - individueller SEO-Titel
@@ -60,7 +61,6 @@ skUnifys Nice-To-Haves (sortiert von hoffentlich leicht nach "Ich-hab-keine-Ahnu
 - Suchfunktion (nach Produktnamen, SKUs, Kategorien, Kurzbeschreibungen, etc.)
 - Zugriff oder Einblick auf / Suche nach schon angelegte und reservierte Produkte
 - Neuvergabe von reservierten Produkten
-- Code teilweise in Funktionen und neue py-Datei auslagern
 - von Listen zu Dictionaries ?
 - in jedem Moment der User-Abfrage einen Abbruch erlauben
 - den User per Abfrage um csv-Import bitten
