@@ -22,6 +22,7 @@ def new_price_function():
             continue
     return price
 
+new_song_sku = None
 new_description = None # für produkte individualisieren
 new_category1 = None
 new_category2 = None

@@ -358,6 +358,8 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                             digi_subtitle = "digi"
                             new_digi_category1 = "Musik für Zuhause / für Viertis"
                             new_digi_category2 = "Musik für Zuhause / CDs + Tonies"
+                            new_cd_seo_title = new_product_name + " |💿 Kinderlieder | minimusiker.de"
+                            new_digi_seo_title = new_product_name + " digital |📀 Kinderlieder | minimusiker.de"
                             while True:
                                 if new_digi == "j" or new_digi == "J":
                                     new_digi_price = new_price_function()
@@ -383,6 +385,8 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                                 new_digi_category2 = "Musik für Zuhause / CDs + Tonies"
                                 new_cd_description = cd_description()
                                 new_cd = input("Willst du zuerst eine neue CD hinzufügen? j/n ")
+                                new_cd_seo_title = new_product_name + " |💿 Kinderlieder | minimusiker.de"
+                                new_digi_seo_title = new_product_name + " digital |📀 Kinderlieder | minimusiker.de"
                                 if new_cd == "j" or new_cd == "J":
                                     new_cd_price = new_price_function()
                                     print(">>>  Neue CD:", new_product_name, new_cd_sku, "hinzugefügt!  <<<")
@@ -464,6 +468,8 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                         new_song_category1 = "Material für deinen Musikunterricht / Songs"
                         new_song_category2 = "Musik für Zuhause / Songs"
                         new_song_price = 1.0
+                        new_song_description = song_description()
+                        new_song_seo_title = new_product_name + " | 🎵 Kinderlied | minimusiker.de"
                         print(">>>  Neuer Song:", new_product_name, new_song_sku, "hinzugefügt!  <<<")
                     if set_category == "11" or set_category == "12" or set_category == "15"  or set_category == "16": # bei noten, playback, text und songtext
                         while True: # song hinzufügen
@@ -474,7 +480,8 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                             new_song_category1 = "Material für deinen Musikunterricht / Songs"
                             new_song_category2 = "Musik für Zuhause / Songs"
                             new_song_price = 1.0
-                            # new_song_description = song_description()
+                            new_song_description = song_description()
+                            new_song_seo_title = new_product_name + " | 🎵 Kinderlied | minimusiker.de"
                             if new_song == "j" or new_song == "J":
                                 print(">>>  Neuer Song:", new_product_name, new_song_sku, "hinzugefügt! <<<")
                                 break
@@ -492,6 +499,7 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                         new_playback_category2 = "Musik für Zuhause / Playbacks"
                         new_playback_price = 4.0
                         new_playback_description = playback_description()
+                        new_playback_seo_title = new_product_name + " | 🎤 Playback | minimusiker.de"
                         if new_playback == "j" or new_playback == "J":
                             print(">>>  Neues Playback:", new_product_name, new_playback_sku, "hinzugefügt! <<<")
                             break
@@ -508,7 +516,8 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                         new_noten_category1 = "Material für deinen Musikunterricht / Noten+"
                         new_noten_category2 = None
                         new_noten_price = 2.0
-                        # new_song_description = song_description()
+                        new_song_description = song_description()
+                        new_noten_seo_title = new_product_name + " | 🎼 Noten | minimusiker.de"
                         if new_noten == "j" or new_noten == "J":
                             print(">>>  Neue Noten:", new_product_name, new_noten_sku, "hinzugefügt!    <<<")
                             break
@@ -525,7 +534,8 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                         new_text_category1 = "Material für deinen Musikunterricht / Texte"
                         new_text_category2 = "Musik für Zuhause / Songtexte"
                         new_text_price = 0.0
-                        # new_song_description = song_description()
+                        new_song_description = song_description()
+                        new_text_seo_title = new_product_name + "  📝 Text | minimusiker.de"
                         if new_text == "j" or new_text == "J":
                             print(">>>  Neuer Text:", new_product_name, new_text_sku, "hinzugefügt! <<<")
                             break
