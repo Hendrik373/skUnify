@@ -42,6 +42,7 @@ skUnify kann bereits:
 - den Preis festlegen (teilweise fest vergeben, Manches über User-Abfrage möglich)
 - für den Verkauf aktivieren, bzw. deaktivieren °°°
 - individuelle Produkt-Beschreibung in HTML
+- individueller SEO-Titel
 - alle vorhandenen und neu angelegten Produkte für einen Import in einer neuen csv-Datei schreiben
 
 °°° alle neu angelegten Produkte bleiben zu Anfang erstmal deaktiviert, da noch Produktbeschreibungen, Audiovorschauen, SEO-Titel und -Beschreibung, Fotos und Thumbnails hinzugefügt werden müssen, bevor die im Shop zu sehen sind. Die Funktion ließ sich aber schnell umsetzen, daher habe ich die Funktion für "den einen besonderen Fall" mal mit reingepackt.
@@ -53,7 +54,6 @@ im Hinblick darauf, dass irgendwann auch ein:e Arbeitskollege:in ein neues Produ
 
 skUnifys Nice-To-Haves (sortiert von hoffentlich leicht nach "Ich-hab-keine-Ahnung-wie-das-gehen-soll"):
 - Code teilweise in Funktionen und neue py-Datei auslagern (angefangen - Optimierungsbedarf)
-- individueller SEO-Titel (angefangen! to-do: song, playback, noten, text, cd, digi)
 - individuelle SEO-Beschreibung
 - 7% und 19% Umsatzsteuer
 - neu Kategorisieren, sobald das Go kommt
