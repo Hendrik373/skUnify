@@ -3,7 +3,7 @@
 Hey,
 
 skUnify ist mein erstes kleines Projekt, das ich in Python3 schreibe und mir meinen Arbeitsalltag erleichtern soll. Es geht um die Pflege eines Online-Shops, 
-bei dem mittlerweile knapp 600 Produkte aktiviert sind und stetig wächst. Jedes Produkt erhält beim Anlegen eine von uns überlegte, für das 
+bei dem mittlerweile über 600 Produkte aktiviert sind und stetig wächst. Jedes Produkt erhält beim Anlegen eine von uns überlegte, für das 
 Produkt spezifische und nummerierte Stock Keeping Unit (SKU). Dabei erkennt man auf einen Blick, um welche Art Produkt es sich handelt und wieviele der 
 selben Art schon im Umlauf sind. Das System funktioniert gut. Allerdings sind über die letzten Monate etliche neue Produkte dazugekommen, und die SKU-Vergabe 
 gestaltet sich zunehmend schwieriger, so dass ich mir nun ein Programm wünsche, bei dem diese Vergabe automatisch passiert.
