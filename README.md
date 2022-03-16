@@ -41,6 +41,7 @@ skUnify kann bereits:
 - neu Angelegtes mit rotem Fähnchen ("NEU!!!") versehen
 - den Preis festlegen (teilweise fest vergeben, Manches über User-Abfrage möglich)
 - für den Shop aktivieren, bzw. deaktivieren °°°
+- individuelle Produkt-Beschreibung in HTML
 - alle vorhandenen und neu angelegten Produkte für einen Import in einer neuen csv-Datei schreiben
 
 °°° alle neu angelegten Produkte bleiben zu Anfang erstmal deaktiviert, da noch Produktbeschreibungen, Audiovorschauen, SEO-Titel und -Beschreibung, Fotos und Thumbnails hinzugefügt werden müssen, bevor die im Shop zu sehen sind. Das ließ sich aber schnell umsetzen, daher habe ich die Funktion für "den einen besonderen 
@@ -52,8 +53,7 @@ Dabei soll es aber nicht bleiben. Im folgenden schreibe ich mir hier eine Checkl
 im Hinblick darauf, dass irgendwann auch ein:e Arbeitskollege:in ein neues Produkt anlegen könnte, ohne das SKU-System verstehen zu müssen.
 
 skUnifys Nice-To-Haves (sortiert von hoffentlich leicht nach "Ich-hab-keine-Ahnung-wie-das-gehen-soll"):
-- Code teilweise in Funktionen und neue py-Datei auslagern (angefangen)
-- individuelle Produkt-Beschreibung in HTML
+- Code teilweise in Funktionen und neue py-Datei auslagern (angefangen und Optimierungsbedarf)
 - 7% und 19% Umsatzsteuer
 - individueller SEO-Titel
 - individuelle SEO-Beschreibung
