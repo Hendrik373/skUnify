@@ -535,7 +535,7 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                         new_text_category2 = "Musik für Zuhause / Songtexte"
                         new_text_price = 0.0
                         new_song_description = song_description()
-                        new_text_seo_title = new_product_name + "  📝 Text | minimusiker.de"
+                        new_text_seo_title = new_product_name + " | 📝 Text | minimusiker.de"
                         if new_text == "j" or new_text == "J":
                             print(">>>  Neuer Text:", new_product_name, new_text_sku, "hinzugefügt! <<<")
                             break
