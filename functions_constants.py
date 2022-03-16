@@ -1,7 +1,6 @@
 
 
 def logo():
-    print("\n>>> Willkommen bei: <<<\n")
     print("                                                     ")
     print("              _     _   _         _   __             ")
     print("             | |   | | | |       (_) / _|            ")
@@ -14,18 +13,20 @@ def logo():
 
 def new_price_function():
     while True:
-        price_abfrage = input("Wieviel kostet das Produkt in €? ")
+        set_price = input("Wieviel kostet das Produkt in €? ")
         try:
-            price = float(price_abfrage)
+            price = float(set_price)
             break
         except:
-            print("Das ist keine Zahl! z.B. 14.99")
+            print("Das ist keine Zahl! (z.B. 14.99)")
             continue
     return price
 
 new_description = None # für produkte individualisieren
+new_category1 = None
 new_category2 = None
 new_category3 = None
+new_cd_category3 = None
 new_image = None
 new_ribbon = "NEU!!!"
 new_ribbon_colour = "#7091DA"

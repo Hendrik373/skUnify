@@ -1,6 +1,7 @@
 import csv
 import json
 from functions_constants import *
+from descriptions import *
 
 products = {}
 
@@ -239,10 +240,10 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
     cd_counter = int(len(my_cds))
     tonie_counter = int(len(my_tonies))
 
+    print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n>>> Willkommen bei:\n")
     logo()
 
     while True: # main loop
-        print("Letzter Eintrag", global_counter)
         new_product = input("Neues Produkt hinzufügen? (j/n) ")
         if new_product == "j" or new_product == "J":
             print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n>>> NEUES PRODUKT ANLEGEN <<<\n")
@@ -271,7 +272,7 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
 
                 if set_category == "1": # leer
                     new_sku = "LEER"
-                    break
+                    continue
                 elif set_category == "2": # lugert und sing mit den minimusikern
                     while True:
                         new_book = input("Neues Buch? (mini/lug) ")
@@ -280,14 +281,16 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                             new_sku = "b" + str(mini_counter).zfill(2) + "-" + str(global_counter).zfill(4)
                             new_subtitle = "Buch"
                             new_category1 = "Material für deinen Musikunterricht / Bücher"
-                            print(">>>  Neues Minimusiker-Buch:", new_product_name, new_sku, "hinzugefügt!  <<<")
                             new_price = new_price_function()
+                            new_description = book_description()
+                            print(">>>  Neues Minimusiker-Buch:", new_product_name, new_sku, "hinzugefügt!  <<<")
                             break
                         elif new_book == "lug":
                             lugert_counter += 1
                             new_sku = "lug" + str(lugert_counter) + "-" + str(global_counter).zfill(4)
                             new_subtitle = "Heft"
                             new_category1 = "Material für deinen Musikunterricht / Bücher"
+                            new_description = book_description()
                             print(">>>  Neues Lugert-Buch:", new_product_name, new_sku, "hinzugefügt!   <<<")
                             while True:
                                 new_price_abfrage = input("Wieviel kostet das Produkt in €? ")
@@ -309,8 +312,9 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                             new_sku = "cop" + str(cop_counter) + "-" + str(global_counter).zfill(4)
                             new_subtitle = "Buch"
                             new_category1 = "Musik für Zuhause / Bücher + Co"
-                            print(">>>  Neues Coppenrath-Buch:", new_product_name, new_sku, "hinzugefügt! <<<")
                             new_price = new_price_function()
+                            new_description = cop_description()
+                            print(">>>  Neues Coppenrath-Buch:", new_product_name, new_sku, "hinzugefügt! <<<")
                             break
                         elif new_book == "p":
                             poster_counter += 1
@@ -319,7 +323,7 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                             new_category1 = "Musik für Zuhause / für Viertis"
                             new_category2 = "Musik für Zuhause / Bücher + Co"
                             new_category3 = "Material für deinen Musikunterricht / Klassenposter"
-                            print(">>>  Neues Poster:", new_product_name, new_sku, "hinzugefügt!    <<<")
+                            print(">>>  Neues Poster:", new_product_name, new_sku, "hinzugefügt!  <<<")
                             while True:
                                 new_price_abfrage = input("Wieviel kostet das Produkt in €? ")
                                 try:
@@ -342,16 +346,17 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                             new_cd_category1 = "Musik für Zuhause / für Viertis"
                             new_cd_category2 = "Musik für Zuhause / CDs + Tonies"
                             new_cd_price = new_price_function()
+                            new_cd_description = cd_description()
                             print(">>>  Neue CD:", new_product_name, new_cd_sku, "hinzugefügt!  <<<")
+                            new_digi = input("Willst du die CD als digitalen Download anbieten? j/n ")
+                            global_counter += 1
+                            new_digi_sku = "cd" + str(cd_counter) + "digi" + "-" + str(global_counter).zfill(4)
+                            digi_subtitle = "digi"
+                            new_digi_category1 = "Musik für Zuhause / für Viertis"
+                            new_digi_category2 = "Musik für Zuhause / CDs + Tonies"
                             while True:
-                                new_digi = input("Willst du die CD als digitalen Download anbieten? j/n ")
-                                global_counter += 1
-                                new_digi_sku = "cd" + str(cd_counter) + "digi" + "-" + str(global_counter).zfill(4)
-                                digi_subtitle = "digi"
-                                new_digi_category1 = "Musik für Zuhause / für Viertis"
-                                new_digi_category2 = "Musik für Zuhause / CDs + Tonies"
                                 if new_digi == "j" or new_digi == "J":
-                                    new_digi_price_abfrage = new_price_function()
+                                    new_digi_price = new_price_function()
                                     print(">>>  Neues digitals Produkt:", new_product_name, new_digi_sku, "hinzugefügt! <<<")
                                     break
                                 elif new_digi == "n" or new_digi == "N":
@@ -372,18 +377,19 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                                 digi_subtitle = "digi"
                                 new_digi_category1 = "Musik für Zuhause / für Viertis"
                                 new_digi_category2 = "Musik für Zuhause / CDs + Tonies"
+                                new_cd_description = cd_description()
                                 new_cd = input("Willst du zuerst eine neue CD hinzufügen? j/n ")
                                 if new_cd == "j" or new_cd == "J":
                                     new_cd_price = new_price_function()
                                     print(">>>  Neue CD:", new_product_name, new_cd_sku, "hinzugefügt!  <<<")
                                     print("Lege einen Preis für den mp3-Download fest!")
-                                    new_digi_price_abfrage = new_price_function()
+                                    new_digi_price = new_price_function()
                                     print(">>>  Neues digitales Produkt:", new_product_name, new_digi_sku, "hinzugefügt!    <<<")
                                     break
                                 elif new_cd == "n" or new_cd == "N":
                                     print("!!!  CD-SKU: " + new_cd_sku + " wurde reserviert !!!")
                                     print("Lege einen Preis für den mp3-Download fest!")
-                                    new_digi_price_abfrage = new_price_function()
+                                    new_digi_price = new_price_function()
                                     print(">>>  Neues digitales Produkt:", new_product_name, new_digi_sku, "hinzugefügt!    <<<")
                                     break
                                 else:
@@ -396,13 +402,14 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                             new_category1 = "Musik für Zuhause / für Viertis"
                             new_category2 = "Musik für Zuhause / CDs + Tonies"
                             new_price = 14.99
+                            new_description = cd_description()
                             print(">>>  Neuer Tonie:", new_product_name, new_sku, "hinzugefügt! <<<")
                             break
                         else:
                             continue
                     break
                 elif set_category == "5": # fanartikel
-                    break
+                    continue
                 elif set_category == "6": # klanggeschichten
                     klanggeschichten_counter += 1
                     new_sku = "kg" + str(klanggeschichten_counter) + "-" + str(global_counter).zfill(4)
@@ -417,6 +424,7 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                     new_subtitle = "kreative Liedersammlung"
                     new_category1 = "Musik für Zuhause / Liedersammlungen"
                     new_price = 3.0
+                    new_description = kl_description()
                     print(">>>  Neue Liedersammlung:", new_product_name, new_sku, "hinzugefügt! <<<")
                     break
                 elif set_category == "8": # materialpakete
@@ -425,6 +433,7 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                     new_subtitle = "Materialpakete"
                     new_category1 = "Material für deinen Musikunterricht / Materialpakete"
                     new_price = 13.0
+                    new_description = mat_description()
                     print(">>>  Neues Materialpaket: #", materialpakete_counter, new_product_name, new_sku, "hinzugefügt!   <<<")
                     break
                 elif set_category == "9": # minimusiker-songpakete
@@ -432,20 +441,22 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                     new_sku = "sp" + str(songpakete_counter) + "-" + str(global_counter).zfill(4)
                     new_subtitle = "Minimusiker-Songpaket"
                     new_category1 = "Material für deinen Musikunterricht / Minimusiker-Songpakete"
-                    print(">>>  Neue Liedersammlung:", new_product_name, new_sku, "hinzugefügt! <<<")
                     new_price = 7.0
+                    new_description = song_description()
+                    print(">>>  Neue Liedersammlung:", new_product_name, new_sku, "hinzugefügt! <<<")
                     break
                 elif set_category == "10": # nachbestellung
-                    break
+                    continue
                 elif set_category == "11" or set_category == "12" or set_category == "15"  or set_category == "16" or set_category == "14": # song hinzufügen
+                    new_song_description = song_description()
                     if set_category == "14":
                         global_counter += 1
-                        new_sku = str(song_counter) + "s-" + str(global_counter).zfill(4)
+                        new_song_sku = str(song_counter) + "s-" + str(global_counter).zfill(4)
                         new_subtitle = "Song"
                         new_song_category1 = "Material für deinen Musikunterricht / Songs"
                         new_song_category2 = "Musik für Zuhause / Songs"
                         new_song_price = 1.0
-                        print(">>>  Neuer Song:", new_product_name, new_sku, "hinzugefügt!  <<<")
+                        print(">>>  Neuer Song:", new_product_name, new_song_sku, "hinzugefügt!  <<<")
                     if set_category == "11" or set_category == "12" or set_category == "15"  or set_category == "16": # bei noten, playback, text und songtext
                         while True: # song hinzufügen
                             new_song = input("Willst du zuerst einen neuen Song hinzufügen? j/n ")
@@ -455,6 +466,7 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                             new_song_category1 = "Material für deinen Musikunterricht / Songs"
                             new_song_category2 = "Musik für Zuhause / Songs"
                             new_song_price = 1.0
+                            # new_song_description = song_description()
                             if new_song == "j" or new_song == "J":
                                 print(">>>  Neuer Song:", new_product_name, new_song_sku, "hinzugefügt! <<<")
                                 break
@@ -471,6 +483,7 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                         new_playback_category1 = "Material für deinen Musikunterricht / Playbacks"
                         new_playback_category2 = "Musik für Zuhause / Playbacks"
                         new_playback_price = 4.0
+                        new_playback_description = playback_description()
                         if new_playback == "j" or new_playback == "J":
                             print(">>>  Neues Playback:", new_product_name, new_playback_sku, "hinzugefügt! <<<")
                             break
@@ -487,6 +500,7 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                         new_noten_category1 = "Material für deinen Musikunterricht / Noten+"
                         new_noten_category2 = None
                         new_noten_price = 2.0
+                        # new_song_description = song_description()
                         if new_noten == "j" or new_noten == "J":
                             print(">>>  Neue Noten:", new_product_name, new_noten_sku, "hinzugefügt!    <<<")
                             break
@@ -503,6 +517,7 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                         new_text_category1 = "Material für deinen Musikunterricht / Texte"
                         new_text_category2 = "Musik für Zuhause / Songtexte"
                         new_text_price = 0.0
+                        # new_song_description = song_description()
                         if new_text == "j" or new_text == "J":
                             print(">>>  Neuer Text:", new_product_name, new_text_sku, "hinzugefügt! <<<")
                             break
@@ -519,10 +534,11 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                     new_subtitle = "Rhythmical"
                     new_category1 = "Material für deinen Musikunterricht / Rhythmicals"
                     new_price = 0.0
-                    print(">>>  Neues Rhythmical:", new_product_name, new_sku, "hinzugefügt!    <<<")
+                    new_description = rhy_description()
+                    print(">>>  Neues Rhythmical:", new_product_name, new_sku, "hinzugefügt!  <<<")
                     break
                 elif set_category == "17": # für vierties
-                    break
+                    continue
                 elif set_category == "18": # interaktive Lerninhalte
                     video_counter += 1
                     new_product_name = "Lernvideo: " + new_product_name
@@ -531,35 +547,36 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                     new_category1 = "Material für deinen Musikunterricht / Noten+"
                     new_category2 = None
                     new_price = new_price_function()
+                    new_description = vid_description()
                     print(">>>  Neues Produkt:", new_product_name, new_sku, "hinzugefügt! <<<")
                     break
                 else:
                     continue
 
-            if set_category == "11" or set_category == "12" or set_category == "15" or set_category == "16": # write rows for new product
+            if set_category == "11" or set_category == "12" or set_category == "14" or set_category == "15" or set_category == "16": # write rows for new product
                 full_line = [new_product_name, new_song_sku, new_subtitle, new_song_description, new_song_category1, new_song_category2, new_category3, new_image, new_ribbon, new_ribbon_colour, new_weight, new_song_price, new_recommended_price, new_quantiy, new_enabled, new_taxClassCode, new_shipping_freight, new_fixed_shipping_rate_only, new_shippingType, new_shippingMethodMarkup, new_shippingFlatRate, new_shippingDisabledMethods, new_shippingEnabledMethods, new_upc, new_brand, new_seo_title, new_seo_description, new_product_url, new_product_id]
                 writer.writerow(full_line)
                 if new_playback == "j" or new_playback == "J":
                     full_line = [new_product_name, new_playback_sku, playback_subtitle, new_playback_description, new_playback_category1, new_playback_category2, new_category3, new_image, new_ribbon, new_ribbon_colour, new_weight, new_playback_price, new_recommended_price, new_quantiy, new_enabled, new_taxClassCode, new_shipping_freight, new_fixed_shipping_rate_only, new_shippingType, new_shippingMethodMarkup, new_shippingFlatRate, new_shippingDisabledMethods, new_shippingEnabledMethods, new_upc, new_brand, new_seo_title, new_seo_description, new_product_url, new_product_id]
                     writer.writerow(full_line)
                 if new_noten == "j" or new_noten == "J":
-                    full_line = [new_product_name, new_noten_sku, noten_subtitle, new_noten_description, new_noten_category1, new_noten_category1, new_category3, new_image, new_ribbon, new_ribbon_colour, new_weight, new_noten_price, new_recommended_price, new_quantiy, new_enabled, new_taxClassCode, new_shipping_freight, new_fixed_shipping_rate_only, new_shippingType, new_shippingMethodMarkup, new_shippingFlatRate, new_shippingDisabledMethods, new_shippingEnabledMethods, new_upc, new_brand, new_seo_title, new_seo_description, new_product_url, new_product_id]
+                    full_line = [new_product_name, new_noten_sku, noten_subtitle, new_song_description, new_noten_category1, new_noten_category1, new_category3, new_image, new_ribbon, new_ribbon_colour, new_weight, new_noten_price, new_recommended_price, new_quantiy, new_enabled, new_taxClassCode, new_shipping_freight, new_fixed_shipping_rate_only, new_shippingType, new_shippingMethodMarkup, new_shippingFlatRate, new_shippingDisabledMethods, new_shippingEnabledMethods, new_upc, new_brand, new_seo_title, new_seo_description, new_product_url, new_product_id]
                     writer.writerow(full_line)
                 if new_text == "j" or new_text == "J":
-                    full_line = [new_product_name, new_text_sku, text_subtitle, new_text_description, new_text_category1, new_text_category2, new_category3, new_image, new_ribbon, new_ribbon_colour, new_weight, new_text_price, new_recommended_price, new_quantiy, new_enabled, new_taxClassCode, new_shipping_freight, new_fixed_shipping_rate_only, new_shippingType, new_shippingMethodMarkup, new_shippingFlatRate, new_shippingDisabledMethods, new_shippingEnabledMethods, new_upc, new_brand, new_seo_title, new_seo_description, new_product_url, new_product_id]
+                    full_line = [new_product_name, new_text_sku, text_subtitle, new_song_description, new_text_category1, new_text_category2, new_category3, new_image, new_ribbon, new_ribbon_colour, new_weight, new_text_price, new_recommended_price, new_quantiy, new_enabled, new_taxClassCode, new_shipping_freight, new_fixed_shipping_rate_only, new_shippingType, new_shippingMethodMarkup, new_shippingFlatRate, new_shippingDisabledMethods, new_shippingEnabledMethods, new_upc, new_brand, new_seo_title, new_seo_description, new_product_url, new_product_id]
                     writer.writerow(full_line)
             elif set_category == "4":
                 if new_tonträger == "cd": # das hier muss neu gemacht werden
-                    full_line = [new_product_name, new_cd_sku, cd_subtitle, new_cd_description, new_cd_category1, new_digi_category2, new_category3, new_image, new_ribbon, new_ribbon_colour, new_weight, new_cd_price, new_recommended_price, new_quantiy, new_enabled, new_taxClassCode, new_shipping_freight, new_fixed_shipping_rate_only, new_shippingType, new_shippingMethodMarkup, new_shippingFlatRate, new_shippingDisabledMethods, new_shippingEnabledMethods, new_upc, new_brand, new_seo_title, new_seo_description, new_product_url, new_product_id]
+                    full_line = [new_product_name, new_cd_sku, cd_subtitle, new_cd_description, new_cd_category1, new_cd_category2, new_cd_category3, new_image, new_ribbon, new_ribbon_colour, new_weight, new_cd_price, new_recommended_price, new_quantiy, new_enabled, new_taxClassCode, new_shipping_freight, new_fixed_shipping_rate_only, new_shippingType, new_shippingMethodMarkup, new_shippingFlatRate, new_shippingDisabledMethods, new_shippingEnabledMethods, new_upc, new_brand, new_seo_title, new_seo_description, new_product_url, new_product_id]
                     writer.writerow(full_line)
                     if new_digi == "j" or new_digi == "J":
-                        full_line = [new_product_name, new_digi_sku, digi_subtitle, new_digi_description, new_cd_category1, new_digi_category2, new_category3, new_image, new_ribbon, new_ribbon_colour, new_weight, new_digi_price, new_recommended_price, new_quantiy, new_enabled, new_taxClassCode, new_shipping_freight, new_fixed_shipping_rate_only, new_shippingType, new_shippingMethodMarkup, new_shippingFlatRate, new_shippingDisabledMethods, new_shippingEnabledMethods, new_upc, new_brand, new_seo_title, new_seo_description, new_product_url, new_product_id]
+                        full_line = [new_product_name, new_digi_sku, digi_subtitle, new_cd_description, new_cd_category1, new_cd_category2, new_cd_category3, new_image, new_ribbon, new_ribbon_colour, new_weight, new_digi_price, new_recommended_price, new_quantiy, new_enabled, new_taxClassCode, new_shipping_freight, new_fixed_shipping_rate_only, new_shippingType, new_shippingMethodMarkup, new_shippingFlatRate, new_shippingDisabledMethods, new_shippingEnabledMethods, new_upc, new_brand, new_seo_title, new_seo_description, new_product_url, new_product_id]
                         writer.writerow(full_line)
                 elif new_tonträger == "digi":
                     if new_cd == "j" or new_cd == "J":
-                        full_line = [new_product_name, new_cd_sku, cd_subtitle, new_cd_description, new_cd_category1, new_digi_category2, new_category3, new_image, new_ribbon, new_ribbon_colour, new_weight, new_cd_price, new_recommended_price, new_quantiy, new_enabled, new_taxClassCode, new_shipping_freight, new_fixed_shipping_rate_only, new_shippingType, new_shippingMethodMarkup, new_shippingFlatRate, new_shippingDisabledMethods, new_shippingEnabledMethods, new_upc, new_brand, new_seo_title, new_seo_description, new_product_url, new_product_id]
+                        full_line = [new_product_name, new_cd_sku, cd_subtitle, new_cd_description, new_cd_category1, new_cd_category2, new_cd_category3, new_image, new_ribbon, new_ribbon_colour, new_weight, new_cd_price, new_recommended_price, new_quantiy, new_enabled, new_taxClassCode, new_shipping_freight, new_fixed_shipping_rate_only, new_shippingType, new_shippingMethodMarkup, new_shippingFlatRate, new_shippingDisabledMethods, new_shippingEnabledMethods, new_upc, new_brand, new_seo_title, new_seo_description, new_product_url, new_product_id]
                         writer.writerow(full_line)
-                    full_line = [new_product_name, new_digi_sku, digi_subtitle, new_digi_description, new_cd_category1, new_digi_category2, new_category3, new_image, new_ribbon, new_ribbon_colour, new_weight, new_digi_price, new_recommended_price, new_quantiy, new_enabled, new_taxClassCode, new_shipping_freight, new_fixed_shipping_rate_only, new_shippingType, new_shippingMethodMarkup, new_shippingFlatRate, new_shippingDisabledMethods, new_shippingEnabledMethods, new_upc, new_brand, new_seo_title, new_seo_description, new_product_url, new_product_id]
+                    full_line = [new_product_name, new_digi_sku, digi_subtitle, new_cd_description, new_cd_category1, new_cd_category2, new_cd_category3, new_image, new_ribbon, new_ribbon_colour, new_weight, new_digi_price, new_recommended_price, new_quantiy, new_enabled, new_taxClassCode, new_shipping_freight, new_fixed_shipping_rate_only, new_shippingType, new_shippingMethodMarkup, new_shippingFlatRate, new_shippingDisabledMethods, new_shippingEnabledMethods, new_upc, new_brand, new_seo_title, new_seo_description, new_product_url, new_product_id]
                     writer.writerow(full_line)
                 elif new_tonträger == "ton":
                     full_line = [new_product_name, new_sku, new_subtitle, new_description, new_category1, new_category2, new_category3, new_image, new_ribbon, new_ribbon_colour, new_weight, new_price, new_recommended_price, new_quantiy, new_enabled, new_taxClassCode, new_shipping_freight, new_fixed_shipping_rate_only, new_shippingType, new_shippingMethodMarkup, new_shippingFlatRate, new_shippingDisabledMethods, new_shippingEnabledMethods, new_upc, new_brand, new_seo_title, new_seo_description, new_product_url, new_product_id]
@@ -569,7 +586,8 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                 writer.writerow(full_line)
 
         elif new_product == "n" or new_product == "N":
-            print("Beendet!")
+            print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n>>> Bis bald!\n")
+            logo()
             break
         else:
             continue
