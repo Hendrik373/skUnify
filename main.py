@@ -1,5 +1,6 @@
 import csv
 import json
+from functions_constants import *
 
 products = {}
 
@@ -110,7 +111,6 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
         row.append(column[header[27]]) # product_url
         row.append(column[header[28]]) # product_id
         rows.append(row)
-        print(column[header[5]])
 
         set_counter = column.get('sku').split('-')[-1] # set up global counter 
         try:
@@ -119,11 +119,9 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
             counter.sort()
         except:
             print("Einige SKUs konnten nicht zugeordnet werden:")
-
         elements = column.get('name') # search for product names
         if elements not in names: 
             names.append(elements)
-
         sku_elements = column.get('sku').split('-')[0] # get skus
 
         if "lug" in sku_elements:
@@ -225,8 +223,8 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
             categories.sort()
 
     writer.writerows(rows)
-
-    global_counter = int(counter[-1])
+    
+    global_counter = int(counter[-1]) # product counter
     song_counter = int(my_song_ints[-1]) + 1
     cop_counter = int(len(my_coppenrath_books))
     poster_counter = int(len(my_poster))
@@ -240,17 +238,8 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
     video_counter = int(len(my_videos))
     cd_counter = int(len(my_cds))
     tonie_counter = int(len(my_tonies))
-    
-    print("\n>>> Willkommen bei: <<<\n")
-    print("                                                     ")
-    print("              _     _   _         _   __             ")
-    print("             | |   | | | |       (_) / _|            ")
-    print("         ___ | | __| | | | _ __   _ | |_  _   _      ")
-    print("        / __|| |/ /| | | || '_ \ | ||  _|| | | |     ")
-    print("        \__ \|   < | |_| || | | || || |  | |_| |     ")
-    print("        |___/|_|\_\ \___/ |_| |_||_||_|   \__, |     ")
-    print("                                           __/ |     ")
-    print("                            © minimusiker |___/     \n")
+
+    logo()
 
     while True: # main loop
         print("Letzter Eintrag", global_counter)
@@ -258,31 +247,7 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
         if new_product == "j" or new_product == "J":
             print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n>>> NEUES PRODUKT ANLEGEN <<<\n")
             global_counter += 1
-            new_description = None # für produkte individualisieren
-            new_category2 = None
-            new_category3 = None
-            new_image = None
-            new_weight = None
-            new_ribbon = "NEU!!!"
-            new_ribbon_colour = "#7091DA"
-            new_recommended_price = None
-            new_quantiy = None
-            new_enabled = "no"
-            new_taxClassCode = "default"
-            new_shipping_freight = 0.00
-            new_fixed_shipping_rate_only = "no"
-            new_shippingType = "GLOBAL_METHODS"
-            new_shippingMethodMarkup = 0.00
-            new_shippingFlatRate = 0.00
-            new_shippingDisabledMethods = None
-            new_shippingEnabledMethods = None
-            new_upc = None
-            new_brand = None
-            new_seo_title = None # für produkte individualisieren
-            new_seo_description = None # für produkte individualisieren
-            new_product_url = None
-            new_product_id = None
-
+            
             print("Neuer Datensatz:", global_counter, "wurde angelegt!")
 
             while True:
@@ -315,30 +280,26 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                             new_sku = "b" + str(mini_counter).zfill(2) + "-" + str(global_counter).zfill(4)
                             new_subtitle = "Buch"
                             new_category1 = "Material für deinen Musikunterricht / Bücher"
-                            print("\n>>> Neues Minimusiker-Buch:", new_product_name, new_sku, "hinzugefügt! <<<\n")
-                            while True:
-                                new_price_abfrage = input("\nWieviel kostet das Produkt in €? ")
-                                try:
-                                    new_price = float(new_price_abfrage)
-                                    break
-                                except:
-                                    print("Das ist keine Zahl! z.B. 14.99")
-                                    continue
+                            print(">>>  Neues Minimusiker-Buch:", new_product_name, new_sku, "hinzugefügt!  <<<")
+                            new_price = new_price_function()
+                            break
                         elif new_book == "lug":
                             lugert_counter += 1
                             new_sku = "lug" + str(lugert_counter) + "-" + str(global_counter).zfill(4)
                             new_subtitle = "Heft"
                             new_category1 = "Material für deinen Musikunterricht / Bücher"
-                            print("\n>>> Neues Lugert-Buch:", new_product_name, new_sku, "hinzugefügt! <<<\n")
+                            print(">>>  Neues Lugert-Buch:", new_product_name, new_sku, "hinzugefügt!   <<<")
                             while True:
-                                new_price_abfrage = input("\nWieviel kostet das Produkt in €? ")
+                                new_price_abfrage = input("Wieviel kostet das Produkt in €? ")
                                 try:
                                     new_price = float(new_price_abfrage)
                                     break
                                 except:
                                     print("Das ist keine Zahl! z.B. 14.99")
                                     continue
-                        break
+                            break
+                        else:
+                            continue
                     break
                 elif set_category == "3": # bücher + co
                     while True:
@@ -348,15 +309,8 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                             new_sku = "cop" + str(cop_counter) + "-" + str(global_counter).zfill(4)
                             new_subtitle = "Buch"
                             new_category1 = "Musik für Zuhause / Bücher + Co"
-                            print("\n>>> Neues Coppenrath-Buch:", new_product_name, new_sku, "hinzugefügt! <<<\n")
-                            while True:
-                                new_price_abfrage = input("\nWieviel kostet das digitale Produkt in €? ")
-                                try:
-                                    new_price = float(new_price_abfrage)
-                                    break
-                                except:
-                                    print("Das ist keine Zahl! z.B. 14.99")
-                                    continue
+                            print(">>>  Neues Coppenrath-Buch:", new_product_name, new_sku, "hinzugefügt! <<<")
+                            new_price = new_price_function()
                             break
                         elif new_book == "p":
                             poster_counter += 1
@@ -365,16 +319,18 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                             new_category1 = "Musik für Zuhause / für Viertis"
                             new_category2 = "Musik für Zuhause / Bücher + Co"
                             new_category3 = "Material für deinen Musikunterricht / Klassenposter"
-                            print("\n>>> Neues Poster:", new_product_name, new_sku, "hinzugefügt! <<<\n")
+                            print(">>>  Neues Poster:", new_product_name, new_sku, "hinzugefügt!    <<<")
                             while True:
-                                new_price_abfrage = input("\nWieviel kostet das digitale Produkt in €? ")
+                                new_price_abfrage = input("Wieviel kostet das Produkt in €? ")
                                 try:
                                     new_price = float(new_price_abfrage)
                                     break
                                 except:
                                     print("Das ist keine Zahl! z.B. 14.99")
                                     continue
-                        break
+                            break
+                        else:
+                            continue
                     break
                 elif set_category == "4": # cds + tonies
                     while True:
@@ -385,15 +341,8 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                             cd_subtitle = "CD"
                             new_cd_category1 = "Musik für Zuhause / für Viertis"
                             new_cd_category2 = "Musik für Zuhause / CDs + Tonies"
-                            print("\n>>> Neue CD:", new_product_name, new_cd_sku, "hinzugefügt! <<<\n")
-                            while True:
-                                new_cd_price_abfrage = input("\nWieviel kostet die CD in €? ")
-                                try:
-                                    new_cd_price = float(new_cd_price_abfrage)
-                                    break
-                                except:
-                                    print("Das ist keine Zahl! z.B. 14.99")
-                                    continue
+                            new_cd_price = new_price_function()
+                            print(">>>  Neue CD:", new_product_name, new_cd_sku, "hinzugefügt!  <<<")
                             while True:
                                 new_digi = input("Willst du die CD als digitalen Download anbieten? j/n ")
                                 global_counter += 1
@@ -402,23 +351,15 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                                 new_digi_category1 = "Musik für Zuhause / für Viertis"
                                 new_digi_category2 = "Musik für Zuhause / CDs + Tonies"
                                 if new_digi == "j" or new_digi == "J":
-                                    print("\n>>> Neues digitals Produkt:", new_product_name, new_digi_sku, "hinzugefügt! <<<\n")
-                                    while True:
-                                        new_digi_price_abfrage = input("\nWieviel kostet digitale das Produkt in €? ")
-                                        try:
-                                            new_digi_price = float(new_cd_price_abfrage)
-                                            break
-                                        except:
-                                            print("Das ist keine Zahl! z.B. 14.99")
-                                            continue
+                                    new_digi_price_abfrage = new_price_function()
+                                    print(">>>  Neues digitals Produkt:", new_product_name, new_digi_sku, "hinzugefügt! <<<")
                                     break
                                 elif new_digi == "n" or new_digi == "N":
-                                    print("\n!!! Digitale CD-SKU: " + new_digi_sku + "wurde reserviert !!!\n")
+                                    print("!!!  Digitale CD-SKU: " + new_digi_sku + "wurde reserviert   !!!")
                                     break
                                 else:
                                     continue
                             break
-
                         elif new_tonträger == "digi":
                             while True:
                                 cd_counter += 1
@@ -433,36 +374,17 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                                 new_digi_category2 = "Musik für Zuhause / CDs + Tonies"
                                 new_cd = input("Willst du zuerst eine neue CD hinzufügen? j/n ")
                                 if new_cd == "j" or new_cd == "J":
-                                    while True:
-                                        new_cd_price_abfrage = input("\nWieviel kostet die CD in €? ")
-                                        try:
-                                            new_cd_price = float(new_cd_price_abfrage)
-                                            break
-                                        except:
-                                            print("Das ist keine Zahl! z.B. 14.99")
-                                            continue
-                                    print("\n>>> Neue CD:", new_product_name, new_cd_sku, "hinzugefügt! <<<\n")
-                                    print("\n>>> Neues digitales Produkt:", new_product_name, new_digi_sku, "hinzugefügt! <<<\n")
-                                    while True:
-                                        new_digi_price_abfrage = input("\nWieviel kostet das digitale Produkt in €? ")
-                                        try:
-                                            new_digi_price = float(new_cd_price_abfrage)
-                                            break
-                                        except:
-                                            print("Das ist keine Zahl! z.B. 14.99")
-                                            continue
+                                    new_cd_price = new_price_function()
+                                    print(">>>  Neue CD:", new_product_name, new_cd_sku, "hinzugefügt!  <<<")
+                                    print("Lege einen Preis für den mp3-Download fest!")
+                                    new_digi_price_abfrage = new_price_function()
+                                    print(">>>  Neues digitales Produkt:", new_product_name, new_digi_sku, "hinzugefügt!    <<<")
                                     break
                                 elif new_cd == "n" or new_cd == "N":
-                                    print("\n!!! CD-SKU: " + new_cd_sku + " wurde reserviert !!!")
-                                    print("\n>>> Neues digitales Produkt:", new_product_name, new_digi_sku, "hinzugefügt! <<<\n")
-                                    while True:
-                                        new_digi_price_abfrage = input("\nWieviel kostet das Produkt in €? ")
-                                        try:
-                                            new_digi_price = float(new_cd_price_abfrage)
-                                            break
-                                        except:
-                                            print("Das ist keine Zahl! z.B. 14.99")
-                                            continue
+                                    print("!!!  CD-SKU: " + new_cd_sku + " wurde reserviert !!!")
+                                    print("Lege einen Preis für den mp3-Download fest!")
+                                    new_digi_price_abfrage = new_price_function()
+                                    print(">>>  Neues digitales Produkt:", new_product_name, new_digi_sku, "hinzugefügt!    <<<")
                                     break
                                 else:
                                     continue
@@ -473,9 +395,11 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                             new_subtitle = "Tonie"
                             new_category1 = "Musik für Zuhause / für Viertis"
                             new_category2 = "Musik für Zuhause / CDs + Tonies"
-                            print("\n>>> Neuer Tonie:", new_product_name, new_sku, "hinzugefügt! <<<\n")
                             new_price = 14.99
+                            print(">>>  Neuer Tonie:", new_product_name, new_sku, "hinzugefügt! <<<")
                             break
+                        else:
+                            continue
                     break
                 elif set_category == "5": # fanartikel
                     break
@@ -484,72 +408,58 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                     new_sku = "kg" + str(klanggeschichten_counter) + "-" + str(global_counter).zfill(4)
                     new_subtitle = "Klanggeschichte"
                     new_category1 = "Material für deinen Musikunterricht / Klanggeschichten"
-                    print("\n>>> Neues Klanggeschichte:", new_product_name, new_sku, "hinzugefügt! <<<\n")
-                    while True:
-                        new_price_abfrage = input("\nWieviel kostet das Produkt in €? ")
-                        try:
-                            new_price = float(new_price_abfrage)
-                            break
-                        except:
-                            print("Das ist keine Zahl! z.B. 14.99")
-                            continue
+                    new_price = new_price_function()
+                    print(">>>  Neues Klanggeschichte:", new_product_name, new_sku, "hinzugefügt!   <<<")
                     break
                 elif set_category == "7": # liedersammlungen
                     liedersammlung_counter += 1
                     new_sku = "kl" + str(liedersammlung_counter) + "-" + str(global_counter).zfill(4)
                     new_subtitle = "kreative Liedersammlung"
                     new_category1 = "Musik für Zuhause / Liedersammlungen"
-                    print("\n>>> Neue Liedersammlung:", new_product_name, new_sku, "hinzugefügt! <<<\n")
                     new_price = 3.0
+                    print(">>>  Neue Liedersammlung:", new_product_name, new_sku, "hinzugefügt! <<<")
                     break
                 elif set_category == "8": # materialpakete
                     materialpakete_counter += 1
                     new_sku = "mp" + str(materialpakete_counter) + "-" + str(global_counter).zfill(4)
                     new_subtitle = "Materialpakete"
                     new_category1 = "Material für deinen Musikunterricht / Materialpakete"
-                    print("\n>>> Neues Materialpaket: #", materialpakete_counter, new_product_name, new_sku, "hinzugefügt! <<<\n")
                     new_price = 13.0
+                    print(">>>  Neues Materialpaket: #", materialpakete_counter, new_product_name, new_sku, "hinzugefügt!   <<<")
                     break
                 elif set_category == "9": # minimusiker-songpakete
                     songpakete_counter += 1
                     new_sku = "sp" + str(songpakete_counter) + "-" + str(global_counter).zfill(4)
                     new_subtitle = "Minimusiker-Songpaket"
                     new_category1 = "Material für deinen Musikunterricht / Minimusiker-Songpakete"
-                    print("\n>>> Neue Liedersammlung:", new_product_name, new_sku, "hinzugefügt! <<<\n")
+                    print(">>>  Neue Liedersammlung:", new_product_name, new_sku, "hinzugefügt! <<<")
                     new_price = 7.0
                     break
                 elif set_category == "10": # nachbestellung
                     break
-                elif set_category == "13": # rhythmicals
-                    rhythmical_counter += 1
-                    new_sku = "rhy" + str(rhythmical_counter) + "-" + str(global_counter).zfill(4)
-                    new_subtitle = "Rhythmical"
-                    new_category1 = "Material für deinen Musikunterricht / Rhythmicals"
-                    print("\n>>> Neues Rhythmical:", new_product_name, new_sku, "hinzugefügt! <<<\n")
-                    new_price = 0.0
-                    break
                 elif set_category == "11" or set_category == "12" or set_category == "15"  or set_category == "16" or set_category == "14": # song hinzufügen
-                    global_counter += 1
-                    new_sku = str(song_counter) + "s-" + str(global_counter).zfill(4)
-                    new_subtitle = "Song"
-                    new_song_category1 = "Material für deinen Musikunterricht / Songs"
-                    new_song_category2 = "Musik für Zuhause / Songs"
-                    print("Neuer Song:", new_product_name, new_sku, "hinzugefügt!\n")
-                    new_song_price = 1.0
+                    if set_category == "14":
+                        global_counter += 1
+                        new_sku = str(song_counter) + "s-" + str(global_counter).zfill(4)
+                        new_subtitle = "Song"
+                        new_song_category1 = "Material für deinen Musikunterricht / Songs"
+                        new_song_category2 = "Musik für Zuhause / Songs"
+                        new_song_price = 1.0
+                        print(">>>  Neuer Song:", new_product_name, new_sku, "hinzugefügt!  <<<")
                     if set_category == "11" or set_category == "12" or set_category == "15"  or set_category == "16": # bei noten, playback, text und songtext
                         while True: # song hinzufügen
                             new_song = input("Willst du zuerst einen neuen Song hinzufügen? j/n ")
                             global_counter += 1
-                            new_song_sku = str(song_counter) + "pb-" + str(global_counter).zfill(4)
+                            new_song_sku = str(song_counter) + "s-" + str(global_counter).zfill(4)
                             new_subtitle = "Song"
                             new_song_category1 = "Material für deinen Musikunterricht / Songs"
                             new_song_category2 = "Musik für Zuhause / Songs"
+                            new_song_price = 1.0
                             if new_song == "j" or new_song == "J":
-                                print("Neuer Song:", new_product_name, new_song_sku, "hinzugefügt!\n")
-                                new_song_price = 1.0
+                                print(">>>  Neuer Song:", new_product_name, new_song_sku, "hinzugefügt! <<<")
                                 break
                             elif new_song == "n" or new_song == "N":
-                                print("Song-SKU: " + new_song_sku + "wurde reserviert!\n")
+                                print("!!!  Song-SKU: " + new_song_sku + "wurde reserviert  !!!")
                                 break
                             else:
                                 continue
@@ -560,12 +470,12 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                         playback_subtitle = "Playback"
                         new_playback_category1 = "Material für deinen Musikunterricht / Playbacks"
                         new_playback_category2 = "Musik für Zuhause / Playbacks"
+                        new_playback_price = 4.0
                         if new_playback == "j" or new_playback == "J":
-                            print("Neues Playback:", new_product_name, new_playback_sku, "hinzugefügt!\n")
-                            new_playback_price = 4.0
+                            print(">>>  Neues Playback:", new_product_name, new_playback_sku, "hinzugefügt! <<<")
                             break
                         elif new_playback == "n" or new_playback == "N":
-                            print("Playback-SKU: " + new_playback_sku + "wurde reserviert!\n")
+                            print("!!!  Playback-SKU: " + new_playback_sku + "wurde reserviert  !!!")
                             break
                         else:
                             continue
@@ -576,12 +486,12 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                         noten_subtitle = "Noten"
                         new_noten_category1 = "Material für deinen Musikunterricht / Noten+"
                         new_noten_category2 = None
+                        new_noten_price = 2.0
                         if new_noten == "j" or new_noten == "J":
-                            print("Neue Noten:", new_product_name, new_noten_sku, "hinzugefügt!\n")
-                            new_noten_price = 2.0
+                            print(">>>  Neue Noten:", new_product_name, new_noten_sku, "hinzugefügt!    <<<")
                             break
                         elif new_noten == "n" or new_noten == "N":
-                            print("Noten-SKU: " + new_noten_sku + "wurde reserviert!\n")
+                            print("!!!  Noten-SKU: " + new_noten_sku + "wurde reserviert    !!!")
                             break
                         else:
                             continue
@@ -592,16 +502,24 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                         text_subtitle = "Text"
                         new_text_category1 = "Material für deinen Musikunterricht / Texte"
                         new_text_category2 = "Musik für Zuhause / Songtexte"
+                        new_text_price = 0.0
                         if new_text == "j" or new_text == "J":
-                            print("Neuer Text:", new_product_name, new_text_sku, "hinzugefügt!\n")
-                            new_text_price = 0.0
+                            print(">>>  Neuer Text:", new_product_name, new_text_sku, "hinzugefügt! <<<")
                             break
                         elif new_text == "n" or new_text == "N":
-                            print("Text-SKU: " + new_text_sku + "wurde reserviert!\n")
+                            print("!!!  Text-SKU: " + new_text_sku + "wurde reserviert  !!!")
                             break
                         else:
                             continue
                     song_counter += 1
+                    break
+                elif set_category == "13": # rhythmicals
+                    rhythmical_counter += 1
+                    new_sku = "rhy" + str(rhythmical_counter) + "-" + str(global_counter).zfill(4)
+                    new_subtitle = "Rhythmical"
+                    new_category1 = "Material für deinen Musikunterricht / Rhythmicals"
+                    new_price = 0.0
+                    print(">>>  Neues Rhythmical:", new_product_name, new_sku, "hinzugefügt!    <<<")
                     break
                 elif set_category == "17": # für vierties
                     break
@@ -612,15 +530,8 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                     new_subtitle = "Video"
                     new_category1 = "Material für deinen Musikunterricht / Noten+"
                     new_category2 = None
-                    print("\n>>> Neue Liedersammlung:", new_product_name, new_sku, "hinzugefügt! <<<\n")
-                    while True:
-                        new_price_abfrage = input("\nWieviel kostet das Produkt in €? ")
-                        try:
-                            new_price = float(new_price_abfrage)
-                            break
-                        except:
-                            print("Das ist keine Zahl! z.B. 14.99")
-                            continue
+                    new_price = new_price_function()
+                    print(">>>  Neues Produkt:", new_product_name, new_sku, "hinzugefügt! <<<")
                     break
                 else:
                     continue
