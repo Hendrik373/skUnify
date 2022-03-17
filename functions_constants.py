@@ -22,8 +22,9 @@ def new_price_function():
             continue
     return price
 
+
 new_song_sku = None
-new_description = None # für produkte individualisieren
+new_description = None
 new_category1 = None
 new_category2 = None
 new_category3 = None
@@ -46,7 +47,7 @@ new_shippingDisabledMethods = None
 new_shippingEnabledMethods = None
 new_upc = None
 new_brand = None
-new_seo_title = None # für produkte individualisieren
-new_seo_description = None # für produkte individualisieren
+new_seo_title = None
+new_seo_description = None
 new_product_url = None
 new_product_id = None

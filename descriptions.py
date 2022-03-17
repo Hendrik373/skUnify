@@ -120,3 +120,10 @@ def vid_description():
         <h6>STICHWORTE</h6>
         <p>Grundschule, Unterrichtsmaterial, Lernvideo, interaktive PDF, Quiz, Material, Arbeitsblatt, Instrumentenkunde</p>"""
     return vid_des
+
+def pos_description():
+    pos_des = """<h5>TITEL</h5>
+        <p>Beschreibungstext</p>
+        <h5>QR-Code mit Hörprobe</h5>
+        <p>MEHR TEXT ?</p>"""
+    return pos_des

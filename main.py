@@ -1,6 +1,6 @@
 import csv
 import json
-from functions_constants import *
+from functions_constants import logo
 from descriptions import *
 
 products = {}
@@ -245,6 +245,7 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
 
     while True: # main loop
         new_product = input("Neues Produkt hinzufügen? (j/n) ")
+        from functions_constants import *
         if new_product == "j" or new_product == "J":
             print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n>>> NEUES PRODUKT ANLEGEN <<<\n")
             global_counter += 1
@@ -284,6 +285,7 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                             new_price = new_price_function()
                             new_description = book_description()
                             new_seo_title = "📗 Buch: " + new_product_name + " | minimusiker.de"
+                            new_seo_description = "♥ Arbeitsblätter, Noten, Texte ♫ Buch (??? Seiten) inkl. CD: ?? Kinderlieder und Playbacks ♥ Lernvideos, Quiz, Sortieraufgaben, Hörbeispiele, interaktive Instrumente ♥ Jetzt im Shop kaufen! ✔️"
                             print(">>>  Neues Minimusiker-Buch:", new_product_name, new_sku, "hinzugefügt!  <<<")
                             break
                         elif new_book == "lug":
@@ -293,6 +295,7 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                             new_category1 = "Material für deinen Musikunterricht / Bücher"
                             new_description = book_description()
                             new_seo_title = new_product_name + " | THEMA | minimusiker.de"
+                            new_seo_description = "♫ Beschreibung (z.B. Heft inkl. CD) ♥ Jetzt im Shop kaufen!"
                             print(">>>  Neues Lugert-Buch:", new_product_name, new_sku, "hinzugefügt!   <<<")
                             while True:
                                 new_price_abfrage = input("Wieviel kostet das Produkt in €? ")
@@ -317,6 +320,7 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                             new_price = new_price_function()
                             new_description = cop_description()
                             new_seo_title = new_product_name + " |📖 Buch | minimusiker.de"
+                            new_seo_description = "BESCHREIBUNG 🔔 Mini Musiker ♫ Bücher für Kinder ♥ schöne und kindgerechte Gestaltung ♥ musikalische Früherziehung für zu Hause ♥"
                             print(">>>  Neues Coppenrath-Buch:", new_product_name, new_sku, "hinzugefügt! <<<")
                             break
                         elif new_book == "p":
@@ -326,7 +330,9 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                             new_category1 = "Musik für Zuhause / für Viertis"
                             new_category2 = "Musik für Zuhause / Bücher + Co"
                             new_category3 = "Material für deinen Musikunterricht / Klassenposter"
+                            new_description = pos_description()
                             new_seo_title = new_product_name + " |📃 Poster | minimusiker.de"
+                            new_seo_description = "BESCHREIBUNG ♫ ... ♥ ... ♥ jetzt im Minimusiker Shop kaufen! ✔"
                             print(">>>  Neues Poster:", new_product_name, new_sku, "hinzugefügt!  <<<")
                             while True:
                                 new_price_abfrage = input("Wieviel kostet das Produkt in €? ")
@@ -359,6 +365,7 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                             new_digi_category1 = "Musik für Zuhause / für Viertis"
                             new_digi_category2 = "Musik für Zuhause / CDs + Tonies"
                             new_cd_seo_title = new_product_name + " |💿 Kinderlieder | minimusiker.de"
+                            new_cd_seo_description = new_product_name + " ♡ ... ♡ BESCHREIBUNG 🎵 CD jetzt im Minimusiker-Shop bestellen! ✔"
                             new_digi_seo_title = new_product_name + " digital |📀 Kinderlieder | minimusiker.de"
                             while True:
                                 if new_digi == "j" or new_digi == "J":
@@ -367,6 +374,7 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                                     break
                                 elif new_digi == "n" or new_digi == "N":
                                     print("!!!  Digitale CD-SKU: " + new_digi_sku + "wurde reserviert   !!!")
+                                    new_digi_price = 0
                                     break
                                 else:
                                     continue
@@ -387,6 +395,7 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                                 new_cd = input("Willst du zuerst eine neue CD hinzufügen? j/n ")
                                 new_cd_seo_title = new_product_name + " |💿 Kinderlieder | minimusiker.de"
                                 new_digi_seo_title = new_product_name + " digital |📀 Kinderlieder | minimusiker.de"
+                                new_cd_seo_description = new_product_name + " ♡ ... ♡ BESCHREIBUNG 🎵 CD jetzt im Minimusiker-Shop bestellen! ✔"
                                 if new_cd == "j" or new_cd == "J":
                                     new_cd_price = new_price_function()
                                     print(">>>  Neue CD:", new_product_name, new_cd_sku, "hinzugefügt!  <<<")
@@ -412,6 +421,7 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                             new_price = 14.99
                             new_description = cd_description()
                             new_seo_title = new_product_name + " - Tonie | Kinderlieder | minimusiker.de"
+                            new_seo_description = "♡ BESCHREIBUNG-Tonie ♡ Lieblingslieder für Kinder ♡ Jetzt Tonie im Minimusiker Shop kaufen und kräftig mitsingen!🎵nur 3€ Versand ✔"
                             print(">>>  Neuer Tonie:", new_product_name, new_sku, "hinzugefügt! <<<")
                             break
                         else:
@@ -435,6 +445,7 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                     new_price = 3.0
                     new_description = kl_description()
                     new_seo_title = "Liedersammlung #" + str(liedersammlung_counter) + " |🎶 Kinderlieder | minimusiker.de"
+                    new_seo_description = "TITEL 🎵Musik für Kinder♥MP3 im Minimusiker Shop runterladen & mitsingen♫"
                     print(">>>  Neue Liedersammlung:", new_product_name, new_sku, "hinzugefügt! <<<")
                     break
                 elif set_category == "8": # materialpakete
@@ -445,6 +456,7 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                     new_price = 13.0
                     new_description = mat_description()
                     new_seo_title = "Unterrichtsmaterial #" + str(materialpakete_counter) + " |📚 Grundschule | minimusiker.de"
+                    new_seo_description = "TITEL 1 / TITEL 2 🍁 Musikunterricht an Grundschulen ♥ auch für fachfremde Pädagogen ♫ jetzt im Minimusiker Shop kaufen!✓"
                     print(">>>  Neues Materialpaket: #"+ str(materialpakete_counter), new_product_name, new_sku, "hinzugefügt!   <<<")
                     break
                 elif set_category == "9": # minimusiker-songpakete
@@ -455,6 +467,7 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                     new_price = 7.0
                     new_description = song_description()
                     new_seo_title = new_product_name + " |🧺 Songpaket | minimusiker.de"
+                    new_seo_description = "TITEL 📂 Song, Playback, Noten, Text🎵Musik für Kinder ♥ Jetzt Songpaket im Minimusiker Shop runterladen und sparen! ♫"
                     print(">>>  Neue Liedersammlung:", new_product_name, new_sku, "hinzugefügt! <<<")
                     break
                 elif set_category == "10": # nachbestellung
@@ -470,6 +483,7 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                         new_song_price = 1.0
                         new_song_description = song_description()
                         new_song_seo_title = new_product_name + " | 🎵 Kinderlied | minimusiker.de"
+                        new_song_seo_description = new_product_name + " ♥ Musik für Kinder ♥ Jetzt MP3 im Minimusiker Shop runterladen und kräftig mitsingen! ♫"
                         print(">>>  Neuer Song:", new_product_name, new_song_sku, "hinzugefügt!  <<<")
                     if set_category == "11" or set_category == "12" or set_category == "15"  or set_category == "16": # bei noten, playback, text und songtext
                         while True: # song hinzufügen
@@ -482,6 +496,7 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                             new_song_price = 1.0
                             new_song_description = song_description()
                             new_song_seo_title = new_product_name + " | 🎵 Kinderlied | minimusiker.de"
+                            new_song_seo_description = new_product_name + " ♥ Musik für Kinder ♥ Jetzt MP3 im Minimusiker Shop runterladen und kräftig mitsingen! ♫"
                             if new_song == "j" or new_song == "J":
                                 print(">>>  Neuer Song:", new_product_name, new_song_sku, "hinzugefügt! <<<")
                                 break
@@ -500,6 +515,7 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                         new_playback_price = 4.0
                         new_playback_description = playback_description()
                         new_playback_seo_title = new_product_name + " | 🎤 Playback | minimusiker.de"
+                        new_playback_seo_description = new_product_name + " 🎵 Musik für Kinder ♥ Jetzt Playback im Minimusiker Shop runterladen und selber mitsingen! ♫"
                         if new_playback == "j" or new_playback == "J":
                             print(">>>  Neues Playback:", new_product_name, new_playback_sku, "hinzugefügt! <<<")
                             break
@@ -518,6 +534,7 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                         new_noten_price = 2.0
                         new_song_description = song_description()
                         new_noten_seo_title = new_product_name + " | 🎼 Noten | minimusiker.de"
+                        new_noten_seo_description = new_product_name + " 🎵 Musik für Kinder ♥ Jetzt Noten im Minimusiker Shop runterladen und selber musizieren! ♫"
                         if new_noten == "j" or new_noten == "J":
                             print(">>>  Neue Noten:", new_product_name, new_noten_sku, "hinzugefügt!    <<<")
                             break
@@ -536,6 +553,7 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                         new_text_price = 0.0
                         new_song_description = song_description()
                         new_text_seo_title = new_product_name + " | 📝 Text | minimusiker.de"
+                        new_text_seo_description = new_product_name + " 🎵 Musik für Kinder ♥ Jetzt kostenlose Texte im Minimusiker Shop runterladen und selber mitsingen! ♫"
                         if new_text == "j" or new_text == "J":
                             print(">>>  Neuer Text:", new_product_name, new_text_sku, "hinzugefügt! <<<")
                             break
@@ -554,6 +572,7 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                     new_price = 0.0
                     new_description = rhy_description()
                     new_seo_title = "Rhythmical | " + new_product_name + " | minimusiker.de"
+                    new_seo_description = "Bodypercussion zur ???-Zeit | Arbeitsblatt mit QR-Code zum Anhören ♥ Video zum Ansehen ♥ pdf jetzt kostenlos bei den Minimusikern downloaden!  ✔"
                     print(">>>  Neues Rhythmical:", new_product_name, new_sku, "hinzugefügt!  <<<")
                     break
                 elif set_category == "17": # für vierties
@@ -568,6 +587,7 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
                     new_price = new_price_function()
                     new_description = vid_description()
                     new_seo_title = new_product_name + " |🎥 Lernvideo | minimusiker.de"
+                    new_seo_description = "BESCHREIBUNG | Musikunterricht mit interaktiven Lerninhalten ♥ padlet Unterrichtsmaterial an Grundschulen ♥ für Smartboards und iPad ♥"
                     print(">>>  Neues Produkt:", new_product_name, new_sku, "hinzugefügt! <<<")
                     break
                 else:
@@ -583,39 +603,39 @@ with open("products_new.csv", "w", encoding="utf-8", newline="") as productfile:
             def full_line_cd():
                 full_line = [new_product_name, new_cd_sku, cd_subtitle, new_cd_description, new_cd_category1, new_cd_category2, new_cd_category3, new_image, 
                 new_ribbon, new_ribbon_colour, new_weight, new_cd_price, new_recommended_price, new_quantiy, new_enabled, new_taxClassCode, new_shipping_freight, new_fixed_shipping_rate_only, 
-                new_shippingType, new_shippingMethodMarkup, new_shippingFlatRate, new_shippingDisabledMethods, new_shippingEnabledMethods, new_upc, new_brand, new_cd_seo_title, new_seo_description, 
+                new_shippingType, new_shippingMethodMarkup, new_shippingFlatRate, new_shippingDisabledMethods, new_shippingEnabledMethods, new_upc, new_brand, new_cd_seo_title, new_cd_seo_description, 
                 new_product_url, new_product_id]
                 writer.writerow(full_line)
             
             def full_line_digi():
                 full_line = [new_product_name, new_digi_sku, digi_subtitle, new_cd_description, new_cd_category1, new_cd_category2, new_cd_category3, new_image, 
                 new_ribbon, new_ribbon_colour, new_weight, new_digi_price, new_recommended_price, new_quantiy, new_enabled, new_taxClassCode, new_shipping_freight, new_fixed_shipping_rate_only, 
-                new_shippingType, new_shippingMethodMarkup, new_shippingFlatRate, new_shippingDisabledMethods, new_shippingEnabledMethods, new_upc, new_brand, new_digi_seo_title, new_seo_description, 
+                new_shippingType, new_shippingMethodMarkup, new_shippingFlatRate, new_shippingDisabledMethods, new_shippingEnabledMethods, new_upc, new_brand, new_digi_seo_title, new_cd_seo_description, 
                 new_product_url, new_product_id]
                 writer.writerow(full_line)
 
             if set_category == "11" or set_category == "12" or set_category == "14" or set_category == "15" or set_category == "16": # write rows for new product
                 full_line = [new_product_name, new_song_sku, new_subtitle, new_song_description, new_song_category1, new_song_category2, new_category3, new_image, 
                 new_ribbon, new_ribbon_colour, new_weight, new_song_price, new_recommended_price, new_quantiy, new_enabled, new_taxClassCode, new_shipping_freight, new_fixed_shipping_rate_only, 
-                new_shippingType, new_shippingMethodMarkup, new_shippingFlatRate, new_shippingDisabledMethods, new_shippingEnabledMethods, new_upc, new_brand, new_song_seo_title, new_seo_description, 
+                new_shippingType, new_shippingMethodMarkup, new_shippingFlatRate, new_shippingDisabledMethods, new_shippingEnabledMethods, new_upc, new_brand, new_song_seo_title, new_song_seo_description, 
                 new_product_url, new_product_id]
                 writer.writerow(full_line)
                 if new_playback == "j" or new_playback == "J":
                     full_line = [new_product_name, new_playback_sku, playback_subtitle, new_playback_description, new_playback_category1, new_playback_category2, new_category3, new_image, 
                     new_ribbon, new_ribbon_colour, new_weight, new_playback_price, new_recommended_price, new_quantiy, new_enabled, new_taxClassCode, new_shipping_freight, new_fixed_shipping_rate_only, 
-                    new_shippingType, new_shippingMethodMarkup, new_shippingFlatRate, new_shippingDisabledMethods, new_shippingEnabledMethods, new_upc, new_brand, new_playback_seo_title, new_seo_description, 
+                    new_shippingType, new_shippingMethodMarkup, new_shippingFlatRate, new_shippingDisabledMethods, new_shippingEnabledMethods, new_upc, new_brand, new_playback_seo_title, new_playback_seo_description, 
                     new_product_url, new_product_id]
                     writer.writerow(full_line)
                 if new_noten == "j" or new_noten == "J":
                     full_line = [new_product_name, new_noten_sku, noten_subtitle, new_song_description, new_noten_category1, new_noten_category1, new_category3, new_image, 
                     new_ribbon, new_ribbon_colour, new_weight, new_noten_price, new_recommended_price, new_quantiy, new_enabled, new_taxClassCode, new_shipping_freight, new_fixed_shipping_rate_only, 
-                    new_shippingType, new_shippingMethodMarkup, new_shippingFlatRate, new_shippingDisabledMethods, new_shippingEnabledMethods, new_upc, new_brand, new_noten_seo_title, new_seo_description, 
+                    new_shippingType, new_shippingMethodMarkup, new_shippingFlatRate, new_shippingDisabledMethods, new_shippingEnabledMethods, new_upc, new_brand, new_noten_seo_title, new_noten_seo_description, 
                     new_product_url, new_product_id]
                     writer.writerow(full_line)
                 if new_text == "j" or new_text == "J":
                     full_line = [new_product_name, new_text_sku, text_subtitle, new_song_description, new_text_category1, new_text_category2, new_category3, new_image, 
                     new_ribbon, new_ribbon_colour, new_weight, new_text_price, new_recommended_price, new_quantiy, new_enabled, new_taxClassCode, new_shipping_freight, new_fixed_shipping_rate_only, 
-                    new_shippingType, new_shippingMethodMarkup, new_shippingFlatRate, new_shippingDisabledMethods, new_shippingEnabledMethods, new_upc, new_brand, new_text_seo_title, new_seo_description, 
+                    new_shippingType, new_shippingMethodMarkup, new_shippingFlatRate, new_shippingDisabledMethods, new_shippingEnabledMethods, new_upc, new_brand, new_text_seo_title, new_text_seo_description, 
                     new_product_url, new_product_id]
                     writer.writerow(full_line)
             elif set_category == "4":
