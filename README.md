@@ -63,7 +63,7 @@ skUnifys Nice-To-Haves (sortiert von hoffentlich leicht nach "Ich-hab-keine-Ahnu
     - Neuvergabe von reservierten Produkten
 - von Listen zu Dictionaries ?
 - in jedem Moment der User-Abfrage einen Abbruch erlauben
-- den User per Abfrage um csv-Import bitten -> REST APi ?? wie bekommt einen access token?
+- den User per Abfrage um csv-Import bitten -> REST api ??
 - eine Rückgängig-Funktion
 - Image und Thumbnail-Upload
 
