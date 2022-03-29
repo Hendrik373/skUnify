@@ -1,4 +1,4 @@
-# skUnify
+# skUnify via csv-Import/Export
 
 Hey,
 
