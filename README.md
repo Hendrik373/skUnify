@@ -56,7 +56,6 @@ im Hinblick darauf, dass irgendwann auch ein:e Arbeitskollege:in ein neues Produ
 skUnifys Nice-To-Haves (sortiert von hoffentlich leicht nach "Ich-hab-keine-Ahnung-wie-das-gehen-soll"):
 - Code teilweise in Funktionen und neue py-Datei auslagern (angefangen - Optimierungsbedarf)
 - 7% und 19% Umsatzsteuer
-- neu Kategorisieren, sobald das Go kommt
 - Suchfunktion (nach Produktnamen, SKUs, Kategorien, Kurzbeschreibungen, etc.)
 - Zugriff oder Einblick auf / Suche nach schon angelegte und reservierte Produkte
     - csv-Datei (reservierte Produkte read & write?)
@@ -67,10 +66,6 @@ skUnifys Nice-To-Haves (sortiert von hoffentlich leicht nach "Ich-hab-keine-Ahnu
 - eine Rückgängig-Funktion
 - Image und Thumbnail-Upload
 
-Ich habe beim Programmieren die generelle Kategorisierung hinterfragt. Ich hätte da einen Vorschlag. Das würde nicht nur den weiteren Verlauf beim Scripten 
-enorm vereinfachen, sondern würde dem Kunden — meiner Meinung nach einen netteren Online-Bummel durch den Shop ermöglichen. Ein Gespräch mit meinen Chefs 
-über eventuelle Änderungen folgt.
-
 Ein paar Abschließende Sätze:
 Ich bin Neuling in der Welt des Programmierens, daher bitte ich um Verzeihung für jegliche Fehlerchen und No-Gos, die sich in den Untiefen des Scripts verbergen. 
 Ich bin seit ein paar Monaten dabei und absolut motiviert. Das Projekt ist eine ordentliche Herausvorderung, aber ich glaube, ich kann dabei Einiges lernen. 
@@ -78,6 +73,9 @@ In der Hoffnung, dass sich skUnify als echtes Tool in meinem Büro-Alltag durchs
 
 Danke fürs Zuhören!
 Hendrik
+
+edit:
+Ich bin gerade dabei das Projekt auf einen json-Down- und Upload via Rest-Api umzuschreiben. Glücklicherweise kann ich den schwierigsten Teil mit der SKU-Vergabe fast komplett übernehmen. Die Umsatzsteuer-Angaben und eine Suchfunktion sind durch die Arbeit mit json um ein Vielfaches einfacher. Listen und Dictionaries und der csv-Import und Export ist dadurch hinfällig geworden. Durch den automatischen Down- und Upload der json habe ich noch mehr zeitersparnis.
 <!---
 hms-challenger/hms-challenger is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 You can click the Preview link to take a look at your changes.
